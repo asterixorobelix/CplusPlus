@@ -49,8 +49,8 @@ void CallCostCalculator::GetInput(string& Day, int& CallLength, int& Hours, int&
 
 void CallCostCalculator::CalculateCallCost(string Day, int CallLength, int Hours, int Minutes) {
 
-	const int PEAKSTARTHOUR = 8;
-	const int PEAKENDHOUR = 18;
+	const int PEAKSTARTHOUR { 8 };
+	const int PEAKENDHOUR { 18 };
 
 	const double PEAKRATE = 0.40;
 	const double OFFPEAKRATE = 0.25;
