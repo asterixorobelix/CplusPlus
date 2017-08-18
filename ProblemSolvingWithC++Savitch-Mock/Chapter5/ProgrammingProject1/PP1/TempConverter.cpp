@@ -25,7 +25,7 @@ void TempConverter::GetInput() {
 	cin >> scale;
 
 	double convertedTemp = ConvertTemp(Temp, scale);
-	ConsolePrint(Temp, convertedTemp);
+	ConsolePrint(Temp, convertedTemp, scale);
 }
 
 enum ScaleChoice
@@ -49,6 +49,13 @@ double TempConverter::ConvertTemp(double temp, int choice) {
 	}	
 }
 
-void TempConverter::ConsolePrint(double temp,double Convertedtemp) {
-	cout << temp << " converted is " << Convertedtemp << endl;
+void TempConverter::ConsolePrint(double temp,double Convertedtemp, int choice) {
+	cout << temp << " converted to";
+	if (choice == ScaleChoice::C) {
+		cout<<" C is " << Convertedtemp << endl;
+	}
+	else {
+		cout << " F is " << Convertedtemp << endl;
+	}
+	
 }
