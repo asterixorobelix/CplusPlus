@@ -13,3 +13,8 @@ More difficult version : Allow the string #N# to occur any number of times in th
 In this case, the name is stored in two string variables. 
 For this version, assume that there is a first name and last name but no middle names or initials.
 */
+#include "JunkMail.h"
+
+int main() {
+	JunkMail jm1 = JunkMail("Nathan Stasin");
+}
