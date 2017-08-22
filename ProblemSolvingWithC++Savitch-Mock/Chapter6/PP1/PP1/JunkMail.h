@@ -10,6 +10,7 @@ public:
 	int GetYear();
 	void WriteFile();
 	void SkipTwoChars(std::ifstream& in);
+	void CloseFiles(ifstream& in, ofstream& out);
 
 private:
 	string _TemplateFileName;

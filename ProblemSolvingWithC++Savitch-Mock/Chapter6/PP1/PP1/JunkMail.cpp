@@ -37,7 +37,7 @@ void JunkMail::WriteFile() {
 	//std::cout << "Current working directory:\n";
 	//std::cout << cwd << std::endl;
 
-	std::string fullfilename = cwd +"\\"+ _TemplateFileName;
+	std::string fullfilename = cwd + "\\" + _TemplateFileName;
 
 	ifstream input;
 	input.open(fullfilename);
@@ -46,20 +46,22 @@ void JunkMail::WriteFile() {
 
 	if (input.fail()) {
 		std::cout << "Failed to open input file\n";
+		exit(1);
 	}
-	
+
 	ofstream output;
 	output.open(_OutputFileName);
 
 	if (output.fail()) {
 		std::cout << "Failed to open output file\n";
+		exit(1);
 	}
 
 	char currentChar;
 	int count = 1;
 
 	while (!input.eof()) {
-		
+		std::cout << "Successfully opened file\n";
 		input.get(currentChar);
 		if (currentChar != '#') {
 			output.put(currentChar);
@@ -88,18 +90,21 @@ void JunkMail::WriteFile() {
 				count++;
 				continue;
 			}
-			
+
 		}
 	}
-
-	std::cout << "Closing files\n";
-	input.close();
-	output.close();
+	CloseFiles(input, output);
 }
 
 void JunkMail::SkipTwoChars(std::ifstream& in) {
 	char c;
 	in.get(c);
 	in.get(c);
+}
+
+void JunkMail::CloseFiles(ifstream& in, ofstream& out) {
+	std::cout << "Closing files\n";
+	in.close();
+	out.close();
 }
 
