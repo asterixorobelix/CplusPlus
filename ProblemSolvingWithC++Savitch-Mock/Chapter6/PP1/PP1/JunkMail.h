@@ -5,8 +5,10 @@ class JunkMail
 {
 public:
 	JunkMail(std::string recipient);
+	~JunkMail();
 	double GetYear();
 	void WriteFile();
+	void CloseStreams();
 private:
 	std::string _TemplateFileName;
 	std::string _RecipientName;

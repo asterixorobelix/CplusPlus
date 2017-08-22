@@ -14,6 +14,10 @@ JunkMail::JunkMail(std::string recipient)
 	WriteFile();
 }
 
+JunkMail::~JunkMail() {
+	CloseStreams();
+}
+
 
 double JunkMail::GetYear() {
 	using namespace std;
@@ -32,5 +36,11 @@ double JunkMail::GetYear() {
 }
 
 void JunkMail::WriteFile() {
+	using namespace std;
+	ifstream input;
+	input.open(_TemplateFileName);
+}
+
+void JunkMail::CloseStreams() {
 
 }
