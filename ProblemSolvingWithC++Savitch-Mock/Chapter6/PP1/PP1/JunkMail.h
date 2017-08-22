@@ -1,19 +1,21 @@
 #pragma once
 #include <iostream>
 
+using namespace std;
+
 class JunkMail
 {
 public:
 	JunkMail(std::string recipient);
-	~JunkMail();
-	double GetYear();
+	int GetYear();
 	void WriteFile();
-	void CloseStreams();
+	void SkipTwoChars(std::ifstream& in);
+
 private:
-	std::string _TemplateFileName;
-	std::string _RecipientName;
-	std::string _Year;
-	std::string _SenderName;
-	std::string _OutputFileName;
+	string _TemplateFileName;
+	string _RecipientName;
+	int _Year;
+	string _SenderName;
+	string _OutputFileName;
 };
 

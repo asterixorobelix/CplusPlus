@@ -145,6 +145,14 @@
   <ItemGroup>
     <ClInclude Include="JunkMail.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="LetterTemplate.txt">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+    </Text>
+    <Text Include="Nathan Stasin.txt">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+    </Text>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

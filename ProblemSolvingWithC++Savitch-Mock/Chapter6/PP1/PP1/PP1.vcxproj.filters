@@ -27,4 +27,8 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="Nathan Stasin.txt" />
+    <Text Include="LetterTemplate.txt" />
+  </ItemGroup>
 </Project>
