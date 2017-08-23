@@ -17,3 +17,9 @@ Based on this example, write a program which takes as input four nonnegative int
 depicts the integer values. 
 Your program should scale the values so they are always drawn with a maximum height of 400 pixels. 
 */
+
+#include "SvgFile.h"
+
+int main() {
+	SvgFile svg = SvgFile();
+}

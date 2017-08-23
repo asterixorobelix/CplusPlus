@@ -1,8 +1,10 @@
 #include "SvgFile.h"
 #include <iostream>
+#include <array>
 
-SvgFile::SvgFile()
+SvgFile::SvgFile():_FileExtension(".svg")
 {
+
 }
 
 string SvgFile::GetHeader() {
@@ -14,17 +16,25 @@ string SvgFile::GetFooter() {
 	return "</svg>";
 }
 
-int* SvgFile::GetInput() {//in c++ you cant return an array directly, you have to return a pointer to the array
+std::array<int,4> SvgFile::GetInput() {
 	const int MAX = 4;
 	int currentEntry;
 
-	int numbers[MAX];
+	std::array<int, MAX> numbers;
 
 	for (int i = 0; i < size(numbers); i++) {
 		std::cout << "Enter a number\n";
 		std::cin >> currentEntry;
-		currentEntry = VerifyInput(currentEntry);
+		currentEntry=VerifyInput(currentEntry);
+		numbers[i] = currentEntry;
 	}
+
+	std::cout << "The numbers are:\n";
+	for each  (int num in numbers)
+	{
+		std::cout << num << std::endl;
+	}
+	return numbers;
 }
 
 int SvgFile::VerifyInput(int num) {
@@ -39,3 +49,14 @@ int SvgFile::VerifyInput(int num) {
 		return num;
 	}
 }
+
+std::string SvgFile::GetRectangle(int coord) {
+	std::string x = "x=" + coord;
+	std::string y = "y=" + coord;
+	std::string h = "height=" + coord;
+
+	std::string result = "<rect "+x+y+h+"/>";
+
+	return result;
+}
+
