@@ -5,9 +5,10 @@ using namespace std;
 class SvgFile
 {
 public:
-	SvgFile();
-	std::array<int, 4> GetInput();
+	SvgFile(std::string file);
+	void CreateSVG();
 private:
+	std::array<int, 4> GetInput();
 	string _FileExtension;
 	string _FileName;
 	string GetHeader();

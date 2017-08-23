@@ -21,5 +21,7 @@ Your program should scale the values so they are always drawn with a maximum hei
 #include "SvgFile.h"
 
 int main() {
-	SvgFile svg = SvgFile();
+	SvgFile svg = SvgFile("rects");
+
+	svg.CreateSVG();
 }

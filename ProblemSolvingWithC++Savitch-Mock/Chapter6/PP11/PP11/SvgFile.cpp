@@ -1,10 +1,11 @@
 #include "SvgFile.h"
 #include <iostream>
 #include <array>
+#include <fstream>
 
-SvgFile::SvgFile():_FileExtension(".svg")
+SvgFile::SvgFile(std::string file):_FileExtension(".svg")
 {
-
+	_FileName = file;
 }
 
 string SvgFile::GetHeader() {
@@ -60,3 +61,21 @@ std::string SvgFile::GetRectangle(int coord) {
 	return result;
 }
 
+void SvgFile::CreateSVG() {
+	std::array<int, 4> numbs = GetInput();
+
+	ofstream out;
+	out.open(_FileName + _FileExtension);
+
+	out << GetHeader();
+
+	for each (int num in numbs)
+	{
+		out << GetRectangle(num);
+	}
+
+	out << GetFooter();
+
+	out.close();
+
+}
