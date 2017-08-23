@@ -16,8 +16,9 @@ std::vector<int> countPositivesSumNegatives(std::vector<int> input);
 int main() {
 	std::vector<int> in= {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14, -15};
 	std::vector<int> in2 = { 0, 2, 3, 0, 5, 6, 7, 8, 9,	10,	-11, -12, -13, -14 };
+	std::vector<int> in3 = {};
 
-	std::vector<int> results = countPositivesSumNegatives(in);
+	std::vector<int> results = countPositivesSumNegatives(in3);
 
 	for each (int var in results)
 	{
@@ -27,19 +28,27 @@ int main() {
 
 std::vector<int> countPositivesSumNegatives(std::vector<int> input) {
 	int negSum =0, posCount =0;
-
-	for each (int num in input)
-	{
-		if (num > 0) {
-			posCount++;
-		}
-		else {
-			negSum += num;
-		}
-	}
 	std::vector<int> result;
+	
+	if (input.size() > 0) {
+		for each (int num in input)
+		{
+			if (num > 0) {
+				posCount++;
+			}
+			else {
+				negSum += num;
+			}
+		}
+		
 
-	result.push_back(posCount);
-	result.push_back(negSum);
+		result.push_back(posCount);
+		result.push_back(negSum);
+	}
+
+	else {
+		result = {};
+	}
+
 	return result;
 }
