@@ -9,12 +9,12 @@ SvgFile::SvgFile(std::string file):_FileExtension(".svg")
 }
 
 string SvgFile::GetHeader() {
-	std::string header = "<?xml version=""1.0"" standalone=""no""?>\n<!DOCTYPE svg PUBLIC ""-//W3C//DTD SVG 1.1//EN""\n""http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"">\n<svg width = ""500"" height = ""500""\nxmlns = ""http://www.w3.org/2000/svg"">";
+	std::string header = "<?xml version=""1.0"" standalone=""no""?>\n<!DOCTYPE svg PUBLIC ""-//W3C//DTD SVG 1.1//EN""\n""http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"">\n<svg width = \"500\" height = \"500\"\nxmlns = ""http://www.w3.org/2000/svg"">";
 	return header;
 }
 
 string SvgFile::GetFooter() {
-	return "</svg>";
+	return "\n</svg>";
 }
 
 std::array<int,4> SvgFile::GetInput() {
@@ -43,7 +43,14 @@ int SvgFile::VerifyInput(int num) {
 
 	if (num > MAX) {
 		std::cout << "Input exceeds the maximum of " << MAX << std::endl;
+		std::cout << "Setting number to " << MAX << std::endl;
 		return MAX;
+	}
+
+	else if (num < 0) {
+		std::cout << "You cant input negative numbers\n";
+		std::cout << "Setting number to zero\n";
+		return 0;
 	}
 
 	else {
@@ -52,11 +59,12 @@ int SvgFile::VerifyInput(int num) {
 }
 
 std::string SvgFile::GetRectangle(int coord) {
-	std::string x = "x=" + coord;
-	std::string y = "y=" + coord;
-	std::string h = "height=" + coord;
+	std::cout << "coord: " << coord << std::endl;
+	std::string x = "x=" + std::to_string(coord);
+	std::string y = "y=" + std::to_string(coord);
+	std::string h = "height=" + std::to_string(coord);
 
-	std::string result = "<rect "+x+y+h+"/>";
+	std::string result = "\n<rect "+x+" "+y + " " +h+"/>";
 
 	return result;
 }

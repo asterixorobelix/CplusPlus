@@ -16,6 +16,9 @@ Finally, the <line> tag draws a purple line from (0, 0) to (300, 300) with a wid
 Based on this example, write a program which takes as input four nonnegative integer values and creates the SVG file that displays a simple bar chart that
 depicts the integer values. 
 Your program should scale the values so they are always drawn with a maximum height of 400 pixels. 
+
+https://www.ofoct.com/viewer/svg-viewer-online.html
+http://www.rapidtables.com/web/tools/svg-viewer-editor.htm
 */
 
 #include "SvgFile.h"
