@@ -1,10 +1,6 @@
-<?xml version=1.0 standalone=no?>
-<!DOCTYPE svg PUBLIC -//W3C//DTD SVG 1.1//EN
-http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd>
-<svg width = "500" height = "500"
-xmlns = http://www.w3.org/2000/svg>
-<rect x=45 y=45 height=45/>
-<rect x=78 y=78 height=78/>
-<rect x=99 y=99 height=99/>
-<rect x=66 y=66 height=66/>
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" version="1.1">
+<rect x="30" height="30" width="30" />
+<rect x="45" height="45" width="45" />
+<rect x="78" height="78" width="78" />
+<rect x="65" height="65" width="65" />
 </svg>

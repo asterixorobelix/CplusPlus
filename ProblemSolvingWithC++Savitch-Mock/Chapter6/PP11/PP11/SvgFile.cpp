@@ -9,7 +9,7 @@ SvgFile::SvgFile(std::string file):_FileExtension(".svg")
 }
 
 string SvgFile::GetHeader() {
-	std::string header = "<?xml version=""1.0"" standalone=""no""?>\n<!DOCTYPE svg PUBLIC ""-//W3C//DTD SVG 1.1//EN""\n""http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"">\n<svg width = \"500\" height = \"500\"\nxmlns = ""http://www.w3.org/2000/svg"">";
+	std::string header = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"500\" height=\"500\" version=\"1.1\">";
 	return header;
 }
 
@@ -60,11 +60,13 @@ int SvgFile::VerifyInput(int num) {
 
 std::string SvgFile::GetRectangle(int coord) {
 	std::cout << "coord: " << coord << std::endl;
-	std::string x = "x=" + std::to_string(coord);
-	std::string y = "y=" + std::to_string(coord);
-	std::string h = "height=" + std::to_string(coord);
+	std::string x = "x=\"" + std::to_string(coord)+"\"";
 
-	std::string result = "\n<rect "+x+" "+y + " " +h+"/>";
+	std::string h = "height=\"" +std::to_string(coord) + "\"";
+	std::string w = "width=\"" + std::to_string(coord) + "\"";
+
+	//<rect width="30" height="30" x="30" fill="green"/>
+	std::string result = "\n<rect "+x+ " " +h+" "+w+" "+ "fill = \"green\"" +"/>";
 
 	return result;
 }

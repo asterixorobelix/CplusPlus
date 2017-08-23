@@ -19,6 +19,25 @@ Your program should scale the values so they are always drawn with a maximum hei
 
 https://www.ofoct.com/viewer/svg-viewer-online.html
 http://www.rapidtables.com/web/tools/svg-viewer-editor.htm
+
+Sample Output:
+Enter a number
+30
+Enter a number
+45
+Enter a number
+78
+Enter a number
+65
+The numbers are:
+30
+45
+78
+65
+coord: 30
+coord: 45
+coord: 78
+coord: 65
 */
 
 #include "SvgFile.h"
