@@ -13,15 +13,31 @@ the integer r (number of rolls) will always be less or equal to 20
 */
 #include <string>
 #include <iostream>
+#include <cmath>
 
 void wallpaper(double l, double w, double h);
 
 int main() {
-
+	wallpaper(4, 3.5, 3);
 }
 
 void wallpaper(double l, double w, double h) {
-	double ROLLWIDTH = 0.52; //m
-	double ROLLLENGTH = 0.1; //m
-	double MISTAKES = 0.15;  //m
+	std::cout << "l :" << l << std::endl;
+	std::cout << "w :" << w << std::endl;
+	std::cout << "h :" << h << std::endl;
+
+	const double ROLLWIDTH = 0.52; //m
+	const double ROLLLENGTH = 10; //m
+	const double MISTAKES = 0.15;  //m
+	const double ROLLAREA = ROLLWIDTH*ROLLLENGTH;
+
+	double lengthArea =abs( l*h);
+	double widthArea =abs( w*h);
+
+	double totalArea = (widthArea + lengthArea)*(1+MISTAKES)*2;//two walls per room!
+	std::cout << "Total area: " << totalArea << std::endl;
+
+	int RollNumber =round( totalArea / ROLLAREA);
+	std::cout << "Roll number: " << RollNumber << std::endl;
+
 }
