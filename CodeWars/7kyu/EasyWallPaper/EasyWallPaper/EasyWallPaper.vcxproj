@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{1ACE92DB-7D26-466F-9307-175EA36718C2}</ProjectGuid>
+    <ProjectGuid>{CF9B73E9-89EC-4C26-84BA-9D7211AB842A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>EasyWallpaper</RootNamespace>
+    <RootNamespace>EasyWallPaper</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,7 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Wallpaper.h" />
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Wallpaper.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
