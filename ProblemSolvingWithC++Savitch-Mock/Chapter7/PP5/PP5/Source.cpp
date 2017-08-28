@@ -17,3 +17,13 @@ N Count
 -1 1
 -12 4
 */
+
+#include "ArrayFile.h"
+#include <array>
+#include <iostream>
+
+int main() {
+	ArrayFile arrayF = ArrayFile("IntegerList");
+	arrayF.GetElementCount();
+
+}
