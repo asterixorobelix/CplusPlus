@@ -5,8 +5,8 @@ In this problem, there are three sensors, at the start, at the 7 mile point and 
 Below is sample data for three racers. The first line is the gun time in 24 hour format (HH MM SS).
 Subsequent lines contain the sensor ID (0=start, 1 = mile 7, 2=finish), followed by the racer's number, followed by the time stamp.
 08 00 00
-0,100,08 00 00
-0,132,08 00 03
+0 100 08 00 00
+0 132 08 00 03
 The IDs of the racers are as follows: 100, 132, 140, 156 and 182.
 The race log is contained in a file called racelog.txt. Write a program which takes the log data and allows a user to enter a racer's number.
 The program should then ouput the racer's overall finish place, overall race time and overall minutes/mile.
@@ -20,7 +20,7 @@ start time: 08 02 00
 finish time: 09 35 10
 overall minutes/mile: 2.59524
 finish placing: 3
-nathan@NathanStasinAcer:~/Desktop/practiceCode$ ./1
+
 Enter raceNumber:
 132
 You entered: 132
@@ -29,3 +29,9 @@ finish time: 09 34 15
 overall minutes/mile: 2.59524
 finish placing: 2
 */
+#include "Race.h"
+
+int main() {
+	Race Argus = Race("racelog");
+	Argus.GetRacerStats(132, Argus);
+}
