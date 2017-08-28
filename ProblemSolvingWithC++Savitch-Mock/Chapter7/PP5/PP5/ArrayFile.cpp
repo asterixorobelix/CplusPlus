@@ -2,6 +2,7 @@
 #include <array>
 #include <fstream>
 #include <iostream>
+#include <iomanip>
 
 ArrayFile::ArrayFile(string name)
 {
@@ -14,7 +15,11 @@ ArrayFile::ArrayFile(string name)
 void ArrayFile::GetElementCount() {
 	int arraySize{ 0 };
 	array<int, 50> IntArray = GetArray(arraySize);
-	GetUniqueEntries(IntArray, _uniqueEntries);
+
+	array<int, 50> UniqueEnt = GetUniqueEntries(IntArray, _uniqueEntries);
+	array<int, 50> UniqueEntCount =GetEntryCount(UniqueEnt, IntArray, _uniqueEntries);
+
+	PrintResult(UniqueEnt, UniqueEntCount, _uniqueEntries);
 	
 }
 
@@ -69,5 +74,42 @@ array<int,50> ArrayFile::GetUniqueEntries(array<int,50> ar, int& c) {
 	}
 	std::cout << "\n";
 	return unique;
+}
+
+array<int, 50> ArrayFile::GetEntryCount(array<int, 50> Unique,array<int,50> ar2, int c) {
+	int i{ 0 }, q{ 0 };
+	array<int, 50> count;
+
+	for each (int var in Unique)
+	{
+		i = 0;
+		for each (int num in ar2)
+		{
+			if (num==var)
+			{
+				i++;
+			}
+		}
+		count[q] = i;
+		q++;
+	}
+
+	std::cout << "Count of unique elements: \n";
+	for (int z=0; z<c;z++)
+	{
+		std::cout << count[z]<< " ";
+	}
+	std::cout << "\n";
+	return count;
+}
+
+void ArrayFile::PrintResult(array <int, 50> ar, array<int, 50> ar2, int c) {//UniqueEnt, UniqueEntCount, _uniqueEntries
+	std::cout.setf(ios::right);	
+	std::cout.width(10);
+	setw(10);
+	std::cout << "\nN "<<"Count" << std::endl;
+	for (int i = 0; i < c; i++) {
+		std::cout << ar[i] << " " << ar2[i] << std::endl;
+	}
 }
 
