@@ -14,7 +14,8 @@ void Race::GetRacerStats(int ID, Race race) {
 
 std::vector<int> Race::GetRaceInfo(std::string file, Race race, int ID) {
 	std::cout << "Racer id: " << ID << std::endl;
-	std::vector<int> times;
+	std::vector<int> times, finishTimes;
+	int finishId = 2;
 	std::ifstream input;
 	input.open(file);
 
@@ -34,12 +35,24 @@ std::vector<int> Race::GetRaceInfo(std::string file, Race race, int ID) {
 			times.push_back(currentMin);
 			times.push_back(currentSec);
 		}
+
+		if (locationId == finishId) {
+			finishTimes.push_back(currentHour);
+			finishTimes.push_back(currentMin);
+			finishTimes.push_back(currentSec);
+		}
 	}
 	std::cout << "Racer times: \n";
 	for (int i = 0; i<size(times); i += 3)
 	{
 		std::cout << times[i] << " " << times[i + 1] << " " << times[i + 2] << std::endl;
 	}
-	return times;
+
+	std::cout << "Racer finish times: \n";
+	for (int i = 0; i<size(finishTimes); i += 3)
+	{
+		std::cout << finishTimes[i] << " " << finishTimes[i + 1] << " " << finishTimes[i + 2] << std::endl;
+	}
+	return times,finishTimes;
 }
 
