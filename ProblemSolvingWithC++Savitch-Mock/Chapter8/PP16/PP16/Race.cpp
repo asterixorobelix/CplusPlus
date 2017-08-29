@@ -13,7 +13,7 @@ void Race::CalculateRaceInfo(Race race) {
 	std::vector<std::string> RaceData = GetRaceInfo(race);
 }
 
-std::vector<std::string> GetRaceInfo(Race race) {
+std::vector<std::string> Race::GetRaceInfo(Race race) {
 	std::string currentLine;
 	std::vector<std::string> RaceInfo;
 	std::ifstream input;
