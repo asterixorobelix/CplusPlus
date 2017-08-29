@@ -8,9 +8,10 @@ public:
 	Race(std::string name);
 	void Race::CalculateRaceInfo(Race race);
 	std::string _FullFileName;
+	int _StartTime;
 private:
 	std::string _FileName;
 	std::string _Extension = ".txt";
-	std::vector<std::string> GetRaceInfo(Race race);
+	void GetRaceInfo(Race race, int id);
 };
 

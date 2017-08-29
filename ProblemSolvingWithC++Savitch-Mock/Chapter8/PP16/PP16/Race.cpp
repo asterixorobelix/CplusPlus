@@ -2,6 +2,7 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include <string>
 
 Race::Race(std::string name)
 {
@@ -10,12 +11,11 @@ Race::Race(std::string name)
 }
 
 void Race::CalculateRaceInfo(Race race) {
-	std::vector<std::string> RaceData = GetRaceInfo(race);
+	GetRaceInfo(race, 132);
 }
 
-std::vector<std::string> Race::GetRaceInfo(Race race) {
+void Race::GetRaceInfo(Race race, int id) {
 	std::string currentLine;
-	std::vector<std::string> RaceInfo;
 	std::ifstream input;
 	input.open(race._FullFileName);
 
@@ -23,17 +23,29 @@ std::vector<std::string> Race::GetRaceInfo(Race race) {
 		std::cout << "Failed to load input file\n";
 		exit(1);
 	}
+	std::string startTime;
+	getline(input, startTime);
+
+	race._StartTime = std::stoi(startTime.substr(0, 2)) * 60  + std::stoi(startTime.substr(3, 2)) + std::stoi(startTime.substr(6, 2))*60;
+
+	std::cout << "Start time in min: " << race._StartTime << std::endl;
+
+	int raceLoc, racerId, RaceHour, RaceMin, RaceSec;
+	double raceTime, minutesMile;
+	const double raceDist = 13.1;
+	const int FinishLoc = 2;
 
 	while (!input.eof()) {
-		getline(input,currentLine);
-		RaceInfo.push_back(currentLine);
+		input>>raceLoc>>racerId>>RaceHour>>RaceMin>>RaceSec;
+		if (raceLoc == FinishLoc&&racerId == id) {
+			raceTime = RaceHour * 60  + RaceMin + RaceSec*60 - race._StartTime;
+			std::cout << "Race Time in min: " << raceTime << std::endl;
+			minutesMile = raceTime / raceDist;
+			std::cout << "Minutes per mile: " << minutesMile << std::endl;
+		}
+		
 	}
 
-	std::cout << "Race info\n";
-	for each (std::string var in RaceInfo)
-	{
-		std::cout << var << std::endl;
-	}
-
-	return RaceInfo;
+	input.close();
+	
 }
