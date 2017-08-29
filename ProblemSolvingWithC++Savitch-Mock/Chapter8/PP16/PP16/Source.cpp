@@ -35,27 +35,29 @@ finish placing: 2
 #include <iostream>
 #include "Line.h"
 
+std::vector<Line> GetRaceInfo(std::string filename);
+
 int main() {
+	
+	std::vector<Line> RaceData = GetRaceInfo("racelog.txt");
+}
+
+std::vector<Line> GetRaceInfo(std::string filename) {
 	std::ifstream input;
-	input.open("racelog.txt");
+	input.open(filename);
 
 	if (input.fail()) {
 		std::cout << "Failed to open file\n";
 		exit(1);
 	}
 
-	std::vector<Line> testVector;
+	std::vector<Line> raceInfo;
 	Line line = Line();
 
 	while (!input.eof()) {
 		input >> line.loc >> line.rId;
-		//std::cout << line.loc << " " << line.rId << std::endl;
-		testVector.push_back(line);
+		raceInfo.push_back(line);
 	}
 
-	for each (Line l in testVector)
-	{
-		std::cout << l.loc << " " << l.rId << std::endl;
-	}
-
+	return raceInfo;
 }
