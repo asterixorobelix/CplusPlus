@@ -29,9 +29,33 @@ finish time: 09 34 15
 overall minutes/mile: 2.59524
 finish placing: 2
 */
-#include "Race.h"
+
+#include <vector>
+#include <fstream>
+#include <iostream>
+#include "Line.h"
 
 int main() {
-	Race Argus = Race("racelog");
-	Argus.CalculateRaceInfo(Argus);
+	std::ifstream input;
+	input.open("racelog.txt");
+
+	if (input.fail()) {
+		std::cout << "Failed to open file\n";
+		exit(1);
+	}
+
+	std::vector<Line> testVector;
+	Line line = Line();
+
+	while (!input.eof()) {
+		input >> line.loc >> line.rId;
+		//std::cout << line.loc << " " << line.rId << std::endl;
+		testVector.push_back(line);
+	}
+
+	for each (Line l in testVector)
+	{
+		std::cout << l.loc << " " << l.rId << std::endl;
+	}
+
 }
