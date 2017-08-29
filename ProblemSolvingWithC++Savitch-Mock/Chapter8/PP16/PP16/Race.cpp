@@ -6,53 +6,34 @@
 Race::Race(std::string name)
 {
 	_FileName = name;
+	_FullFileName = _FileName + _Extension;
 }
 
-void Race::GetRacerStats(int ID, Race race) {
-	GetRaceInfo(_FileName + _Extension, race, ID);
+void Race::CalculateRaceInfo(Race race) {
+	std::vector<std::string> RaceData = GetRaceInfo(race);
 }
 
-std::vector<int> Race::GetRaceInfo(std::string file, Race race, int ID) {
-	std::cout << "Racer id: " << ID << std::endl;
-	std::vector<int> times, finishTimes;
-	int finishId = 2;
+std::vector<std::string> GetRaceInfo(Race race) {
+	std::string currentLine;
+	std::vector<std::string> RaceInfo;
 	std::ifstream input;
-	input.open(file);
+	input.open(race._FullFileName);
 
 	if (input.fail()) {
-		std::cout << "Failed to open file\n";
+		std::cout << "Failed to load input file\n";
+		exit(1);
 	}
-
-	input >> race.StartHour >> race.StartMinute >> race.StartSecond;
-
-	int locationId, racerId, currentHour, currentMin, currentSec;
 
 	while (!input.eof()) {
-		input >> locationId >> racerId >> currentHour >> currentMin >> currentSec;
-
-		if (racerId == ID) {
-			times.push_back(currentHour);
-			times.push_back(currentMin);
-			times.push_back(currentSec);
-		}
-
-		if (locationId == finishId) {
-			finishTimes.push_back(currentHour);
-			finishTimes.push_back(currentMin);
-			finishTimes.push_back(currentSec);
-		}
+		getline(input,currentLine);
+		RaceInfo.push_back(currentLine);
 	}
-	std::cout << "Racer times: \n";
-	for (int i = 0; i<size(times); i += 3)
+
+	std::cout << "Race info\n";
+	for each (std::string var in RaceInfo)
 	{
-		std::cout << times[i] << " " << times[i + 1] << " " << times[i + 2] << std::endl;
+		std::cout << var << std::endl;
 	}
 
-	std::cout << "Racer finish times: \n";
-	for (int i = 0; i<size(finishTimes); i += 3)
-	{
-		std::cout << finishTimes[i] << " " << finishTimes[i + 1] << " " << finishTimes[i + 2] << std::endl;
-	}
-	return times,finishTimes;
+	return RaceInfo;
 }
-

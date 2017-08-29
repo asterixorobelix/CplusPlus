@@ -33,5 +33,5 @@ finish placing: 2
 
 int main() {
 	Race Argus = Race("racelog");
-	Argus.GetRacerStats(132, Argus);
+	Argus.CalculateRaceInfo(Argus);
 }
