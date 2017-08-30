@@ -7,7 +7,7 @@ Subsequent lines contain the sensor ID (0=start, 1 = mile 7, 2=finish), followed
 08 00 00
 0 100 08 00 00
 0 132 08 00 03
-The IDs of the racers are as follows: 100, 132, 140, 156 and 182.
+The IDs of the 5 racers are as follows: 100, 132, 140, 156 and 182.
 The race log is contained in a file called racelog.txt. Write a program which takes the log data and allows a user to enter a racer's number.
 The program should then ouput the racer's overall finish place, overall race time and overall minutes/mile.
 The program should also detect cheating. If a racer misses a sensor, they are a cheat. If their race is suspiciously fast (faster than 5 minutes per mile), they are a cheat.
@@ -44,7 +44,7 @@ void GetOverallFinishPlace(std::vector<Line> data, Racer Runner, Race race);
 int main() {
 	int racerId=132;
 	Racer runner = Racer();
-	Race Argus = Race(13.1);//finish length in miles
+	Race Argus = Race(13.1,5);//finish length in miles
 	runner.id = racerId;
 	std::vector<Line> RaceData = GetRaceInfo("racelog.txt",Argus);
 	GetRaceTimeAndAverage(RaceData, runner, Argus);
@@ -110,5 +110,7 @@ void GetOverallFinishPlace(std::vector<Line> data, Racer Runner, Race race) {
 		}
 	}
 
-	std::cout << "The placing of runner: " << Runner.id << " is: " << Runner.placing << std::endl;
+	Runner.placing = race.RunnerNumber - 1 + Runner.placing;
+
+	std::cout << "The placing of runner: " << Runner.id << " is: " <<Runner.placing << std::endl;
 }
