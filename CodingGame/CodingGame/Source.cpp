@@ -5,6 +5,9 @@
 
 using namespace std;
 
+string CalculateXmove(int dX,int& initialTX);
+string CalculateYmove(int dY, int& initialTY);
+
 /**
  * Auto-generated code below aims at helping you parse
  * the standard input according to the problem statement.
@@ -29,7 +32,45 @@ int main()
 
 		deltaX = lightX - initialTX;
 		deltaY = lightY - initialTY;
+
+		string xCommand =CalculateXmove(deltaX, initialTX);
+		string yCommand = CalculateYmove(deltaY, initialTY);
         // A single line providing the move to be made: N NE E SE S SW W or NW
         //cout << "SE" << endl;
+		cout << xCommand + yCommand << endl;
     }
+}
+
+string CalculateXmove(int dX, int& initialTX) {
+	string xCommand;
+
+	if (dX > 0) {
+		xCommand = "E";
+		initialTX++;
+	}
+	else if (dX < 0) {
+		xCommand = "W";
+		initialTX--;
+	}
+	else {
+		xCommand = "";
+	}
+	return xCommand;
+}
+
+string CalculateYmove(int dY, int& initialTY) {
+	string yCommand;
+
+	if (dY > 0) {
+		yCommand = "S";
+		initialTY++;
+	}
+	else if (dY < 0) {
+		yCommand = "N";
+		initialTY--;
+	}
+	else {
+		yCommand = "";
+	}
+	return yCommand;
 }
