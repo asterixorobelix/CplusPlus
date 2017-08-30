@@ -37,7 +37,7 @@ int main()
 		string yCommand = CalculateYmove(deltaY, initialTY);
         // A single line providing the move to be made: N NE E SE S SW W or NW
         //cout << "SE" << endl;
-		cout << xCommand + yCommand << endl;
+		cout << yCommand+ xCommand  << endl;
     }
 }
 
