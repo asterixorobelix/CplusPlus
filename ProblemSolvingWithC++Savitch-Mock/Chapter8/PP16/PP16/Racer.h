@@ -6,9 +6,9 @@ class Racer
 {
 public:
 	Racer();
-	void GetRaceTimeAndAverage(std::vector<Line> data, Race race);
-	void GetOverallFinishPlace(std::vector<Line> data, Race race);
-	void DetectCheating(std::vector<Line> data, Race race);
+	void GetRaceTimeAndAverage(Race race);
+	void GetOverallFinishPlace(Race race);
+	void DetectCheating(Race race);
 	int id;
 private:
 	int racetimeMins, placing;

@@ -38,11 +38,11 @@ finish placing: 2
 #include "Race.h"
 
 int main() {
-	int racerId=100;
+
+	Race Argus = Race(13.1, 5, "racelog.txt");//finish length in miles, total number of runners
+	
 	Racer runner = Racer();
-	Race Argus = Race(13.1,5);//finish length in miles, total number of runners
-	runner.id = racerId;
-	std::vector<Line> RaceData = Argus.GetRaceInfo("racelog.txt");
-	runner.GetRaceTimeAndAverage(RaceData, Argus);
-	runner.DetectCheating(RaceData, Argus);
+	runner.id = 140;
+	runner.GetRaceTimeAndAverage(Argus);
+	runner.DetectCheating (Argus);
 }

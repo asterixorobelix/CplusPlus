@@ -4,11 +4,12 @@
 #include <fstream>
 #include <vector>
 
-Race::Race(double raceLen, int runNum)
+Race::Race(double raceLen, int runNum, std::string name)
 {
 	raceLength = raceLen;
 	raceMidPointLength = raceLength / 2;
 	RunnerNumber = runNum;
+	RaceData = GetRaceInfo(name);
 }
 
 

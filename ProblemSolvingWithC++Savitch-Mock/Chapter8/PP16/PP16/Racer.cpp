@@ -5,9 +5,9 @@ Racer::Racer() {
 	placing = 0;
 }
 
-void Racer::GetRaceTimeAndAverage(std::vector<Line> data, Race race) {
+void Racer::GetRaceTimeAndAverage(Race race) {
 
-	for each (Line line in data)
+	for each (Line line in race.RaceData)
 	{
 		if (line.loc == race.FinishSensorLoc&&line.rId == this->id) {
 			this->racetimeMins = line.timeMin - race.startTime;
@@ -21,12 +21,12 @@ void Racer::GetRaceTimeAndAverage(std::vector<Line> data, Race race) {
 
 	std::cout << "The average racetime, in minutes, for racer: " << this->id << " is: " << this->raceAverageTime << std::endl;
 
-	GetOverallFinishPlace(data, race);
+	GetOverallFinishPlace(race);
 }
 
-void Racer::GetOverallFinishPlace(std::vector<Line> data, Race race) {
+void Racer::GetOverallFinishPlace(Race race) {
 
-	for each (Line line in data)
+	for each (Line line in race.RaceData)
 	{
 		if (line.rId != this->id && line.loc == race.FinishSensorLoc) {
 			if (line.timeMin < this->racetimeMins) {
@@ -43,13 +43,13 @@ void Racer::GetOverallFinishPlace(std::vector<Line> data, Race race) {
 	std::cout << "The placing of runner: " << this->id << " is: " << this->placing << std::endl;
 }
 
-void Racer::DetectCheating(std::vector<Line> data, Race race) {
+void Racer::DetectCheating(Race race) {
 	double averageSpeed;
 
-	for (int i = 0; i<data.size(); i++)
+	for (int i = 0; i<race.RaceData.size(); i++)
 	{
-		if (data[i].loc > 0 && data[i].rId == this->id) {
-			averageSpeed = (data[i].timeMin - data[i - 1].timeMin) / race.raceMidPointLength;
+		if (race.RaceData[i].loc > 0 && race.RaceData[i].rId == this->id) {
+			averageSpeed = (race.RaceData[i].timeMin - race.RaceData[i - 1].timeMin) / race.raceMidPointLength;
 			if (averageSpeed > race.suspiciousSpeed) {
 				std::cout << "The racer with the id: " << this->id << " is a cheat\n";
 				exit(1);
