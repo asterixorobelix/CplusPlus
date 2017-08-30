@@ -35,20 +35,22 @@ finish placing: 2
 #include <iostream>
 #include "Line.h"
 #include "Racer.h"
+#include "Race.h"
 
-std::vector<Line> GetRaceInfo(std::string filename, int& startTime);
-void GetRaceTimeAndAverage(std::vector<Line> data, Racer Runner, int start);
-void GetOverallFinishPlace(std::vector<Line> data, Racer Runner);
+std::vector<Line> GetRaceInfo(std::string filename, Race race);
+void GetRaceTimeAndAverage(std::vector<Line> data, Racer Runner, Race race);
+void GetOverallFinishPlace(std::vector<Line> data, Racer Runner, Race race);
 
 int main() {
-	int StartTime, racerId=132;
+	int racerId=132;
 	Racer runner = Racer();
+	Race Argus = Race(13.1);//finish length in miles
 	runner.id = racerId;
-	std::vector<Line> RaceData = GetRaceInfo("racelog.txt",StartTime);
-	GetRaceTimeAndAverage(RaceData, runner, StartTime);
+	std::vector<Line> RaceData = GetRaceInfo("racelog.txt",Argus);
+	GetRaceTimeAndAverage(RaceData, runner, Argus);
 }
 
-std::vector<Line> GetRaceInfo(std::string filename, int& startTime) {
+std::vector<Line> GetRaceInfo(std::string filename, Race race) {
 	std::ifstream input;
 	input.open(filename);
 
@@ -62,47 +64,43 @@ std::vector<Line> GetRaceInfo(std::string filename, int& startTime) {
 	int hour, min, sec;
 
 	input >> hour >> min >> sec;
-	startTime = hour * 60 + min + sec * 60;
+	race.startTime = hour * 60 + min + sec/ 60;
 
 	while (!input.eof()) {
 		input >> line.loc >> line.rId;
 		input >> hour >> min >> sec;
-		line.timeMin = hour * 60 + min + sec * 60;
+		line.timeMin = hour * 60 + min + sec / 60;
+		//std::cout << line.loc<<" "<<line.rId<<" "<<line.timeMin << std::endl;
 		raceInfo.push_back(line);
 	}
 
 	return raceInfo;
 }
 
-void GetRaceTimeAndAverage(std::vector<Line> data, Racer Runner, int start) {
-	
-	double RaceLength = 13.1; //miles
-	int finishLoc = 2;
+void GetRaceTimeAndAverage(std::vector<Line> data, Racer Runner, Race race) {
 
 	for each (Line line in data)
 	{
-		if (line.loc == finishLoc&&line.rId ==Runner.id) {
-			Runner.racetimeMins = line.timeMin-start;
+		if (line.loc == race.FinishSensorLoc&&line.rId ==Runner.id) {
+			Runner.racetimeMins = line.timeMin-race.startTime;
 			break;
 		}
 	}
 
 	std::cout << "The overall racetime, in minutes, for racer: " << Runner.id << " is: " << Runner.racetimeMins << std::endl;
 
-	Runner.raceAverageTime = Runner.racetimeMins / RaceLength;
+	Runner.raceAverageTime = Runner.racetimeMins / race.raceLength;
 
 	std::cout << "The average racetime, in minutes, for racer: " << Runner.id << " is: " << Runner.raceAverageTime << std::endl;
 
-	GetOverallFinishPlace(data, Runner);
+	GetOverallFinishPlace(data, Runner, race);
 }
 
-void GetOverallFinishPlace(std::vector<Line> data, Racer Runner) {
-	
-	int finishLoc = 2;
+void GetOverallFinishPlace(std::vector<Line> data, Racer Runner, Race race) {
 
 	for each (Line line in data)
 	{
-		if (line.rId != Runner.id&&line.loc == finishLoc) {
+		if (line.rId != Runner.id&&line.loc == race.FinishSensorLoc) {
 			if (line.timeMin < Runner.racetimeMins) {
 				Runner.placing++;
 			}
