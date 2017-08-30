@@ -53,9 +53,16 @@ std::vector<Line> GetRaceInfo(std::string filename) {
 
 	std::vector<Line> raceInfo;
 	Line line = Line();
+	int startTime;
+	int hour, min, sec;
+
+	input >> hour >> min >> sec;
+	startTime = hour * 60 + min + sec * 60;
 
 	while (!input.eof()) {
 		input >> line.loc >> line.rId;
+		input >> hour >> min >> sec;
+		line.timeMin = hour * 60 + min + sec * 60;
 		raceInfo.push_back(line);
 	}
 
