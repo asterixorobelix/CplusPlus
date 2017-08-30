@@ -37,7 +37,6 @@ finish placing: 2
 #include "Racer.h"
 #include "Race.h"
 
-std::vector<Line> GetRaceInfo(std::string filename, Race race);
 void GetRaceTimeAndAverage(std::vector<Line> data, Racer Runner, Race race);
 void GetOverallFinishPlace(std::vector<Line> data, Racer Runner, Race race);
 void DetectCheating(std::vector<Line> data, Racer Runner, Race race);
@@ -47,37 +46,12 @@ int main() {
 	Racer runner = Racer();
 	Race Argus = Race(13.1,5);//finish length in miles, total number of runners
 	runner.id = racerId;
-	std::vector<Line> RaceData = GetRaceInfo("racelog.txt",Argus);
+	std::vector<Line> RaceData = Argus.GetRaceInfo("racelog.txt");
 	GetRaceTimeAndAverage(RaceData, runner, Argus);
 	DetectCheating(RaceData, runner, Argus);
 }
 
-std::vector<Line> GetRaceInfo(std::string filename, Race race) {
-	std::ifstream input;
-	input.open(filename);
 
-	if (input.fail()) {
-		std::cout << "Failed to open file\n";
-		exit(1);
-	}
-
-	std::vector<Line> raceInfo;
-	Line line = Line();
-	int hour, min, sec;
-
-	input >> hour >> min >> sec;
-	race.startTime = hour * 60 + min + sec/ 60;
-
-	while (!input.eof()) {
-		input >> line.loc >> line.rId;
-		input >> hour >> min >> sec;
-		line.timeMin = hour * 60 + min + sec / 60;
-		//std::cout << line.loc<<" "<<line.rId<<" "<<line.timeMin << std::endl;
-		raceInfo.push_back(line);
-	}
-
-	return raceInfo;
-}
 
 void GetRaceTimeAndAverage(std::vector<Line> data, Racer Runner, Race race) {
 
