@@ -97,20 +97,20 @@ void GetRaceTimeAndAverage(std::vector<Line> data, Racer Runner, int start) {
 }
 
 void GetOverallFinishPlace(std::vector<Line> data, Racer Runner) {
-	int placing{ 0 };
+	
 	int finishLoc = 2;
 
 	for each (Line line in data)
 	{
 		if (line.rId != Runner.id&&line.loc == finishLoc) {
 			if (line.timeMin < Runner.racetimeMins) {
-				placing++;
+				Runner.placing++;
 			}
 			else {
-				placing--;
+				Runner.placing--;
 			}
 		}
 	}
 
-	std::cout << "The placing of runner: " << Runner.id << " is: " << placing << std::endl;
+	std::cout << "The placing of runner: " << Runner.id << " is: " << Runner.placing << std::endl;
 }

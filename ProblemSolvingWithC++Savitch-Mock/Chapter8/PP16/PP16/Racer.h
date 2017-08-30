@@ -2,7 +2,12 @@
 class Racer
 {
 public:
-	int racetimeMins, id;
+	Racer();
+	int racetimeMins, id, placing;
 	double raceAverageTime;
 };
+
+Racer::Racer() {
+	placing = 0;
+}
 
