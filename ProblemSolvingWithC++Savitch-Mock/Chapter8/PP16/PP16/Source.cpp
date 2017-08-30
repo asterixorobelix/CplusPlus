@@ -40,14 +40,16 @@ finish placing: 2
 std::vector<Line> GetRaceInfo(std::string filename, Race race);
 void GetRaceTimeAndAverage(std::vector<Line> data, Racer Runner, Race race);
 void GetOverallFinishPlace(std::vector<Line> data, Racer Runner, Race race);
+void DetectCheating(std::vector<Line> data, Racer Runner, Race race);
 
 int main() {
-	int racerId=132;
+	int racerId=100;
 	Racer runner = Racer();
-	Race Argus = Race(13.1,5);//finish length in miles
+	Race Argus = Race(13.1,5);//finish length in miles, total number of runners
 	runner.id = racerId;
 	std::vector<Line> RaceData = GetRaceInfo("racelog.txt",Argus);
 	GetRaceTimeAndAverage(RaceData, runner, Argus);
+	DetectCheating(RaceData, runner, Argus);
 }
 
 std::vector<Line> GetRaceInfo(std::string filename, Race race) {
@@ -113,4 +115,19 @@ void GetOverallFinishPlace(std::vector<Line> data, Racer Runner, Race race) {
 	Runner.placing = race.RunnerNumber - 1 + Runner.placing;
 
 	std::cout << "The placing of runner: " << Runner.id << " is: " <<Runner.placing << std::endl;
+}
+
+void DetectCheating(std::vector<Line> data, Racer Runner, Race race) {
+	double averageSpeed;
+
+	for(int i = 0; i<data.size();i++)
+	{
+		if (data[i].loc > 0 && data[i].rId == Runner.id) {
+			averageSpeed = (data[i].timeMin - data[i - 1].timeMin) / race.raceMidPointLength;
+			if (averageSpeed > race.suspiciousSpeed) {
+				std::cout << "The racer with the id: "<<Runner.id<<" is a cheat\n";
+				exit(1);
+			}
+		}
+	}
 }
