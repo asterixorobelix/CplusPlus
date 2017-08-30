@@ -18,17 +18,18 @@ int main()
     int initialTX; // Thor's starting X position
     int initialTY; // Thor's starting Y position
     cin >> lightX >> lightY >> initialTX >> initialTY; cin.ignore();
+	const int xMax{ 40 }, yMax{ 18 };
+
+	int deltaX, deltaY;
 
     // game loop
     while (1) {
         int remainingTurns; // The remaining amount of turns Thor can move. Do not remove this line.
         cin >> remainingTurns; cin.ignore();
 
-        // Write an action using cout. DON'T FORGET THE "<< endl"
-        // To debug: cerr << "Debug messages..." << endl;
-
-
+		deltaX = lightX - initialTX;
+		deltaY = lightY - initialTY;
         // A single line providing the move to be made: N NE E SE S SW W or NW
-        cout << "SE" << endl;
+        //cout << "SE" << endl;
     }
 }
