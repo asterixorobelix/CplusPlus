@@ -37,71 +37,12 @@ finish placing: 2
 #include "Racer.h"
 #include "Race.h"
 
-void GetRaceTimeAndAverage(std::vector<Line> data, Racer Runner, Race race);
-void GetOverallFinishPlace(std::vector<Line> data, Racer Runner, Race race);
-void DetectCheating(std::vector<Line> data, Racer Runner, Race race);
-
 int main() {
 	int racerId=100;
 	Racer runner = Racer();
 	Race Argus = Race(13.1,5);//finish length in miles, total number of runners
 	runner.id = racerId;
 	std::vector<Line> RaceData = Argus.GetRaceInfo("racelog.txt");
-	GetRaceTimeAndAverage(RaceData, runner, Argus);
-	DetectCheating(RaceData, runner, Argus);
-}
-
-
-
-void GetRaceTimeAndAverage(std::vector<Line> data, Racer Runner, Race race) {
-
-	for each (Line line in data)
-	{
-		if (line.loc == race.FinishSensorLoc&&line.rId ==Runner.id) {
-			Runner.racetimeMins = line.timeMin-race.startTime;
-			break;
-		}
-	}
-
-	std::cout << "The overall racetime, in minutes, for racer: " << Runner.id << " is: " << Runner.racetimeMins << std::endl;
-
-	Runner.raceAverageTime = Runner.racetimeMins / race.raceLength;
-
-	std::cout << "The average racetime, in minutes, for racer: " << Runner.id << " is: " << Runner.raceAverageTime << std::endl;
-
-	GetOverallFinishPlace(data, Runner, race);
-}
-
-void GetOverallFinishPlace(std::vector<Line> data, Racer Runner, Race race) {
-
-	for each (Line line in data)
-	{
-		if (line.rId != Runner.id&&line.loc == race.FinishSensorLoc) {
-			if (line.timeMin < Runner.racetimeMins) {
-				Runner.placing++;
-			}
-			else {
-				Runner.placing--;
-			}
-		}
-	}
-
-	Runner.placing = race.RunnerNumber - 1 + Runner.placing;
-
-	std::cout << "The placing of runner: " << Runner.id << " is: " <<Runner.placing << std::endl;
-}
-
-void DetectCheating(std::vector<Line> data, Racer Runner, Race race) {
-	double averageSpeed;
-
-	for(int i = 0; i<data.size();i++)
-	{
-		if (data[i].loc > 0 && data[i].rId == Runner.id) {
-			averageSpeed = (data[i].timeMin - data[i - 1].timeMin) / race.raceMidPointLength;
-			if (averageSpeed > race.suspiciousSpeed) {
-				std::cout << "The racer with the id: "<<Runner.id<<" is a cheat\n";
-				exit(1);
-			}
-		}
-	}
+	runner.GetRaceTimeAndAverage(RaceData, Argus);
+	runner.DetectCheating(RaceData, Argus);
 }
