@@ -34,14 +34,18 @@ finish placing: 2
 #include <fstream>
 #include <iostream>
 #include "Line.h"
+#include "Racer.h"
 
 std::vector<Line> GetRaceInfo(std::string filename, int& startTime);
-void GetRaceTimeAndAverage(std::vector<Line> data, int id, int start);
+void GetRaceTimeAndAverage(std::vector<Line> data, Racer Runner, int start);
+void GetOverallFinishPlace(std::vector<Line> data, Racer Runner);
 
 int main() {
 	int StartTime, racerId=132;
+	Racer runner = Racer();
+	runner.id = racerId;
 	std::vector<Line> RaceData = GetRaceInfo("racelog.txt",StartTime);
-	GetRaceTimeAndAverage(RaceData, racerId, StartTime);
+	GetRaceTimeAndAverage(RaceData, runner, StartTime);
 }
 
 std::vector<Line> GetRaceInfo(std::string filename, int& startTime) {
@@ -70,22 +74,43 @@ std::vector<Line> GetRaceInfo(std::string filename, int& startTime) {
 	return raceInfo;
 }
 
-void GetRaceTimeAndAverage(std::vector<Line> data, int id, int start) {
+void GetRaceTimeAndAverage(std::vector<Line> data, Racer Runner, int start) {
+	
 	double RaceLength = 13.1; //miles
-	double raceAverageTime;
-	int finishLoc = 2, racetimeMins;
+	int finishLoc = 2;
 
 	for each (Line line in data)
 	{
-		if (line.loc == finishLoc&&line.rId == id) {
-			racetimeMins = line.timeMin-start;
+		if (line.loc == finishLoc&&line.rId ==Runner.id) {
+			Runner.racetimeMins = line.timeMin-start;
 			break;
 		}
 	}
 
-	std::cout << "The overall racetime, in minutes, for racer: " << id << " is: " << racetimeMins << std::endl;
+	std::cout << "The overall racetime, in minutes, for racer: " << Runner.id << " is: " << Runner.racetimeMins << std::endl;
 
-	raceAverageTime = racetimeMins / RaceLength;
+	Runner.raceAverageTime = Runner.racetimeMins / RaceLength;
 
-	std::cout << "The average racetime, in minutes, for racer: " << id << " is: " << raceAverageTime << std::endl;
+	std::cout << "The average racetime, in minutes, for racer: " << Runner.id << " is: " << Runner.raceAverageTime << std::endl;
+
+	GetOverallFinishPlace(data, Runner);
+}
+
+void GetOverallFinishPlace(std::vector<Line> data, Racer Runner) {
+	int placing{ 0 };
+	int finishLoc = 2;
+
+	for each (Line line in data)
+	{
+		if (line.rId != Runner.id&&line.loc == finishLoc) {
+			if (line.timeMin < Runner.racetimeMins) {
+				placing++;
+			}
+			else {
+				placing--;
+			}
+		}
+	}
+
+	std::cout << "The placing of runner: " << Runner.id << " is: " << placing << std::endl;
 }
