@@ -11,9 +11,11 @@ If all the sides are unequal, the program should do nothing.
 using namespace std;
 
 vector<double> GetInput();
+void Isosceles(vector<double> data);
 
 int main() {
 	vector<double> result = GetInput();
+	Isosceles(result);
 }
 
 vector<double> GetInput() {
@@ -28,6 +30,12 @@ vector<double> GetInput() {
 		sides.push_back(side);
 		i++;
 	}
-
 	return sides;
+}
+
+void Isosceles(vector<double> data) {
+	for each (object var in collection_to_loop)
+	{
+
+	}
 }
