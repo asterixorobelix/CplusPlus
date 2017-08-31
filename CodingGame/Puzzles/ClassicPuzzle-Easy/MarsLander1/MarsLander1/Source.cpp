@@ -29,17 +29,19 @@ int main()
         int rotate; // the rotation angle in degrees (-90 to 90).
         int power; // the thrust power (0 to 4).
         cin >> X >> Y >> hSpeed >> vSpeed >> fuel >> rotate >> power; cin.ignore();
+		const int vMAX = 40;
 
         // Write an action using cout. DON'T FORGET THE "<< endl"
         // To debug: cerr << "Debug messages..." << endl;
-		const int vMAX = 40;
-		int deltaV = (vSpeed - vMAX);
+		if (abs(vSpeed) >= vMAX) {
+			power = 4;
+		}
 
-		if (deltaV < 0) {
-			deltaV =abs(deltaV);
+		else {
+			power = 0;
 		}
 
         // 2 integers: rotate power. rotate is the desired rotation angle (should be 0 for level 1), power is the desired thrust power (0 to 4).
-        cout << "0 "<<deltaV << endl;
+        cout << "0 "<<power << endl;
     }
 }
