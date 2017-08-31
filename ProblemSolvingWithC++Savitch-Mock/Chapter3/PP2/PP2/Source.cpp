@@ -6,3 +6,28 @@ The program should print the three angles if the triangle is equilateral.
 If the triangle is isosceles, it should prompt the user to input the odd angle and the program should print the remaining angles.
 If all the sides are unequal, the program should do nothing.
 */
+#include <iostream>
+#include <vector>
+using namespace std;
+
+vector<double> GetInput();
+
+int main() {
+	vector<double> result = GetInput();
+}
+
+vector<double> GetInput() {
+	cout << "Enter three lengths representing the triangle sides: \n";
+	int i = 1;
+	double side;
+	vector<double> sides;
+	
+	while (i <= 3) {
+		cout << "Enter the length of side " << i << ":\n";
+		cin >> side;
+		sides.push_back(side);
+		i++;
+	}
+
+	return sides;
+}
