@@ -7,9 +7,9 @@ Here is pseudocode to determine a leap year:
 year = (year divisible by 400) or (year divisible by 4 and year not divisible by 100))
 eg: 2016 should output true
 
-getCenturyValue(int year); This function should take the first two digits of the year (that is, the cen-tury), divide by 4, and save the remainder. 
+getCenturyValue(int year); This function should take the first two digits of the year, divide by 4, and save the remainder. 
 Subtract the remainder from 3 and return this value multiplied by 2.
-For example, the year 2008 becomes: (21/4) = 5 with a remainder of 0.25. 3 - 0.25 = 2.75. Return 2.75 * 2 = 5.5.
+For example, the year 2008 becomes: (20/4) = 5 with a remainder of 0. 3 - 0 = 3. Return 3* 2 = 6.
 
 int getYearValue(int year); This function computes a value based on the years since the beginning of the century. 
 First, extract the last two digits of the year. For example, 08 is extracted for 2008. Next, factor in leap years.
@@ -36,7 +36,7 @@ Divide the sum by 7 and compute the remainder. A remainder of 0 corresponds to S
 For example, the date July 4, 2008 should be computed as (day of month) + (getMonthValue) + (getYearValue) + (getCenturyValue) = 4 + 6 + 10 + 6 = 26.
 26/7 = 3 with a remainder of 5. The fifth day of the week corresponds to Friday.
 
-Eg: 30 September 1986 is a Tuesday
+Eg: 30 September 1986 is a Tuesday. 1986 is not a leap year.
 
 Your program should allow the user to enter any date and output the corresponding day of the week in English.
 This program should include a void function named getInput that prompts the user for the date and returns the month, day, and year using pass-by-reference parameters.

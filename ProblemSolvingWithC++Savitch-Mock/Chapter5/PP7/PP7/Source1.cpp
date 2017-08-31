@@ -3,18 +3,17 @@
 using namespace std;
 
 bool isLeapYear(int year);
-double Remainder(int numerator, int denominator);
 double getCenturyValue(int year);
 int getYearValue(int year);
 int getMonthValue(int month, int year);
 string ComputeDayOfWeek(int day, int month, int year);
 
 int main() {
-	cout << ComputeDayOfWeek(30,9,1986) << endl;
+	cout << ComputeDayOfWeek(4,7,2008) << endl;
 }
 
 bool isLeapYear(int year) {
-	if (Remainder(year, 400) == 0 || (Remainder(year, 4) == 0 && Remainder(year, 100) > 0)) {
+	if (year%400 == 0 || (year%4 == 0 && year%100 > 0)) {
 		return true;
 	}
 	else {
@@ -22,27 +21,9 @@ bool isLeapYear(int year) {
 	}
 }
 
-double Remainder(int numerator, int denominator) {
-	return (static_cast<double>(numerator) / static_cast<double>(denominator) - (numerator / denominator));
-}
-
-
 double getCenturyValue(int year) {
-	int cent = year / 100, val;
-	int remainder = year - cent * 100;
-
-	if (year < 100) {//eg year = 197;
-		val =1;
-	}
-
-	if (remainder == 0) {//eg year = 1900
-		val = cent;
-	}
-
-	else if (remainder > 0) {//year = 1907
-		val=cent+1;
-	}
-	return 2 * (3 - Remainder(val, 4));
+	int val = year / 100;
+	return 2 * (3 - val % 4);
 }
 
 int getYearValue(int year) {
@@ -112,8 +93,9 @@ int getMonthValue(int month, int year) {
 }
 
 string ComputeDayOfWeek(int day, int month, int year) {
-	int sum = day + getMonthValue(month, year) + getYearValue(year) + getCenturyValue(year);
-	int s = Remainder(sum, 7);
+	int s1 = getMonthValue(month, year), s2= getYearValue(year), s3 = getCenturyValue(year);
+	int sum = day +s1  +s2  +s3 ;
+	int s = sum%7;
 
 	switch(s) {
 	case 0:
