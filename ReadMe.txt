@@ -10,16 +10,16 @@ http://www.stroustrup.com/programming.html
 Pluralsight
 https://www.pluralsight.com/paths/c-plus-plus
 
-https://codefights.com/
+https://www.hackerrank.com/domains/cpp/cpp-introduction
 https://www.codewars.com/
+
+https://codefights.com/
 
 Coding Game
 https://www.codingame.com/
-
 https://www.topcoder.com/
 
 Google C++ course
 https://developers.google.com/edu/c++/
 
-https://www.hackerrank.com/domains/cpp/cpp-introduction
 https://www.hackerearth.com/
