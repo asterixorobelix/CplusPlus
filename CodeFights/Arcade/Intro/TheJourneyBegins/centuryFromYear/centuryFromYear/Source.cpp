@@ -13,8 +13,42 @@ Input/Output
 A positive integer, designating the year.
 
 Guaranteed constraints:
-1 year 2005.
+1<=year<=2005.
 
 [output] integer
 The number of the century the year is in.
+
+Sample Output:
+Year: 1905
+Century: 20
+Year: 1700
+Century: 17
 */
+#include <iostream>
+
+int centuryFromYear(int year);
+
+int main() {
+	centuryFromYear(1905);
+	centuryFromYear(1700);
+}
+
+int centuryFromYear(int year) {
+	std::cout << "Year: " << year << std::endl;
+	int century, first, second;
+	
+	first = year / 100;
+	second = year - first * 100;
+
+	if (second == 0) {
+		second = 0;
+	}
+
+	else {
+		second = 1;
+	}
+	century = first + second;
+
+	std::cout << "Century: " << century << std::endl;
+	return century;
+}
