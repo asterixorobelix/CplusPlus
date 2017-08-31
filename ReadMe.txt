@@ -23,3 +23,8 @@ Google C++ course
 https://developers.google.com/edu/c++/
 
 https://www.hackerearth.com/
+
+
+************************
+Cleaning unicode from text:
+http://www.ubertoolz.com/demo/CleanUp.php
