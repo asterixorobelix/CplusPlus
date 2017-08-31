@@ -32,9 +32,14 @@ int main()
 
         // Write an action using cout. DON'T FORGET THE "<< endl"
         // To debug: cerr << "Debug messages..." << endl;
+		const int vMAX = 40;
+		int deltaV = (vSpeed - vMAX);
 
+		if (deltaV < 0) {
+			deltaV =abs(deltaV);
+		}
 
         // 2 integers: rotate power. rotate is the desired rotation angle (should be 0 for level 1), power is the desired thrust power (0 to 4).
-        cout << "0 3" << endl;
+        cout << "0 "<<deltaV << endl;
     }
 }
