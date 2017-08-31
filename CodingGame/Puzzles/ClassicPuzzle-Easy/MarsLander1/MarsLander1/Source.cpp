@@ -37,7 +37,7 @@ int main()
 
         // Write an action using cout. DON'T FORGET THE "<< endl"
         // To debug: cerr << "Debug messages..." << endl;
-		if (abs(vSpeed) >= vMAX) {
+		if (abs(vSpeed)>= vMAX) {
 			power = 4;
 		}
 
