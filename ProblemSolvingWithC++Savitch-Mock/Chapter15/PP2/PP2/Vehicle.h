@@ -1,8 +1,13 @@
 #pragma once
+#include <string>
+#include "Person.h"
+
 class Vehicle
 {
 public:
 	Vehicle();
-	~Vehicle();
+	std::string Manufacturer;
+	int Cylinders;
+	Person Owner;
 };
 
