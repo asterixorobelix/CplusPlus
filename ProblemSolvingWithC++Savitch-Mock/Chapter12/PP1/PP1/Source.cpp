@@ -6,7 +6,7 @@ Implement the default constructor and the constructor with one int parameter.
 Overload the ==, <, + and - operators.
 Also, overload the * operator to allow multiplication of a percent by an integer.
 Write a program to test all the member functions and overloaded operators in your class definition.
-Define your aDT class in separate files so that it can be compiled separately.
+Define your ADT class in separate files so that it can be compiled separately.
 
 */
 #include <iostream>
