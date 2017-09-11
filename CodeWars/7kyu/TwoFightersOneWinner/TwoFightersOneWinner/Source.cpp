@@ -15,3 +15,13 @@ Lew attacks Harry; Harry now has 1 health.
 Harry attacks Lew; Lew now has 2 health.
 Lew attacks Harry: Harry now has -1 health and is dead. Lew wins.
 */
+
+#include "Fighter.h"
+#include <iostream>
+
+int main() {
+	Fighter Lew = Fighter("Lew", 10, 2);
+	Fighter Harry = Fighter("Harry", 5, 4);
+
+	DeclareWinner(Lew, Harry, "Lew");
+}
