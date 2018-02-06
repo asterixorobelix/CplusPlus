@@ -1,0 +1,7 @@
+Each line contains a student’s details as follows: lastName firstName testScores testAverage 
+william smith 67 98 65 32 26.2
+scott kollins 11 89 10
+jack johnson 2 1 55 5.8
+stephen alpha 67 56 7 99 21 25
+robert einstein 0
+

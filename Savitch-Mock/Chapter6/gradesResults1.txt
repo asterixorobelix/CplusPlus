@@ -1,0 +1,2 @@
+Each line which follows contains as follows: lastName firstName recordedTestScores averageOfRecordedTestScores
+  
